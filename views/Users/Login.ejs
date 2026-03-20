@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login | FoodieHub</title>
+    <link rel="stylesheet" href="/css/login.css" />
+  </head>
+  <body>
+    <%- include("../includes/flash.ejs") %>
+    <div class="container">
+      <!-- Left Side (Brand + Food Vibe) -->
+      <div class="left-panel">
+        <div class="overlay">
+          <h1>FoodieHub 🍕</h1>
+          <p>Discover the best flavors near you</p>
+        </div>
+      </div>
+
+      <!-- Right Side (Login Form) -->
+      <div class="right-panel">
+        <div class="form-box">
+          <h2>Welcome Back 👋</h2>
+          <p class="sub-text">Login to continue your food journey</p>
+
+          <form action="/user/login" method="POST">
+            <div class="input-group">
+              <input type="text" name="username" required />
+              <label>Username</label>
+            </div>
+
+            <div class="input-group">
+              <input type="password" name="password" required />
+              <label>Password</label>
+            </div>
+
+            <button class="login-btn">Login</button>
+
+            <p class="bottom-text">
+              Don't have an account?
+              <a href="/user/signup">Sign up</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

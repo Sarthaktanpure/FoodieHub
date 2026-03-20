@@ -1,0 +1,37 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<link rel="stylesheet" href="/css/ai.css">
+
+<section class="ai-section">
+
+  <h1>🤖 AI Restaurant Finder</h1>
+
+  <form method="POST" action="/restaurants/discover/ai" class="ai-form">
+    <input type="text" name="query" placeholder="e.g. romantic dinner in Pune" required>
+    <button>Ask AI</button>
+  </form>
+
+  <% if (errorMessage) { %>
+    <p class="ai-error"><%= errorMessage %></p>
+  <% } %>
+
+  <% if(restaurants && restaurants.length > 0) { %>
+
+    <div class="ai-grid">
+
+      <% restaurants.forEach(r => { %>
+
+        <div class="ai-card">
+          <h3><%= r.name %></h3>
+          <p><strong>Cuisine:</strong> <%= r.cuisine %></p>
+          <p><strong>Location:</strong> <%= r.location %></p>
+          <p><%= r.description %></p>
+        </div>
+
+      <% }) %>
+
+    </div>
+
+  <% } %>
+
+</section>

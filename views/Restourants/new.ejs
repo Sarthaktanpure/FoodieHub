@@ -1,0 +1,88 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+    <section class="hero-new">
+        <div class="hero-container">
+            <div class="hero-text">
+               
+            </div>
+        </div>
+        </div>
+    </section>
+    <section class="form-section">
+        <div class="form-container">
+            <h2>Add New Restaurant</h2>
+            <p class="form-subtitle">Share a great place to eat with the community.</p>
+
+            <form action="/Restaurants" novalidate class="needs-validation" method="POST" enctype="multipart/form-data">
+                <!-- TITLE -->
+                <div class="form-group">
+                    <label>Restaurant Name</label>
+                    <input type="text" class="form-control" name="restaurant[title]" placeholder="e.g. Pizza Palace" required />
+                    <div class="invalid-feedback">
+                        Please enter valid Restaurant Name
+                    </div>
+                </div>
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="restaurant[description]"
+                        class="form-control"
+                        placeholder="Describe the restaurant, ambience, specialties..." required></textarea>
+                    <div class="invalid-feedback">
+                        Please Enter valid Description
+                    </div>
+                </div>
+
+                <!-- CUISINE -->
+
+                <div class="form-group">
+                    <label>Cuisine</label>
+                    <input type="text" class="form-control" name="restaurant[cuisine]" placeholder="Italian, Chinese, Indian..." required />
+                    <div class="invalid-feedback">
+                        Please enter valid Cuisine
+                    </div>
+                </div>
+
+                <!-- PRICE RANGE -->
+
+                <div class="form-group">
+                    <label>Price Range</label>
+
+                    <select name="restaurant[priceRange]"class="form-control">
+                        <option value="₹">₹ Budget</option>
+                        <option value="₹₹" selected>₹₹ Moderate</option>
+                        <option value="₹₹₹">₹₹₹ Expensive</option>
+                        <option value="₹₹₹₹">₹₹₹₹ Luxury</option>
+                    </select>
+                </div>
+
+                <!-- LOCATION -->
+
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" class="form-control" name="restaurant[location]" placeholder="City / Area" required />
+                    <div class="invalid-feedback">
+                        Please enter valid Location
+                    </div>
+                </div>
+
+                <!-- IMAGE -->
+
+                <div class="form-group">
+                    <label>Image</label>
+                    <input type="file" name="restaurant[image]" required />
+                </div>
+
+                <!-- RATING -->
+
+                <div class="form-group">
+                    <label>Rating (1–5)</label>
+                    <input type="number" class="form-control"name="restaurant[rating]" min="1" max="5" step="0.1" placeholder="4.5" />
+                </div>
+                <!-- SUBMIT -->
+                <button class="form-btn">Add Restaurant</button>
+            </form>
+        </div>
+    </section>

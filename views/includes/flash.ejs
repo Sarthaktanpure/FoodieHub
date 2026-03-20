@@ -1,0 +1,36 @@
+
+<div class="flash-container">
+
+  <% if(successMessage && successMessage.length) { %>
+    <div class="flash flash-success">
+      <span><%= successMessage %></span>
+      <button class="flash-close">&times;</button>
+    </div>
+  <% } %>
+
+  <% if(errorMessage && errorMessage.length) { %>
+    <div class="flash flash-error">
+      <span><%= errorMessage %></span>
+      <button class="flash-close">&times;</button>
+    </div>
+  <% } %>
+
+</div>
+
+<script>
+  const flashes = document.querySelectorAll(".flash");
+
+  flashes.forEach(flash => {
+    // Auto remove after 3.5 sec
+    setTimeout(() => {
+      flash.classList.add("fade-out");
+      setTimeout(() => flash.remove(), 400);
+    }, 3500);
+
+    // Close button
+    flash.querySelector(".flash-close").addEventListener("click", () => {
+      flash.classList.add("fade-out");
+      setTimeout(() => flash.remove(), 300);
+    });
+  });
+</script>
