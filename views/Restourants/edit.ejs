@@ -7,7 +7,7 @@
             <h2>Edit Restaurant</h2>
             <p class="form-subtitle">Update restaurant details.</p>
 
-            <form action="/Restaurants/<%= restaurant._id %>?_method=PUT" novalidate class="needs-validation" method="POST">
+            <form action="/Restaurants/<%= restaurant._id %>?_method=PUT" novalidate class="needs-validation" method="POST" enctype="multipart/form-data">
 
                 <!-- TITLE -->
 
@@ -74,7 +74,7 @@
 
                 <div class="form-group">
                     <label>Image URL</label>
-                    <input type="text" class="form-control" name="restaurant[image][url]" value="<%= restaurant.image.url %>">
+                    <input type="file" class="form-control" name="restaurant[image]" value="<%= restaurant.image.url %>">
                     <div class="invalid-feedack">
                         Please enter valid Image URL
                     </div>

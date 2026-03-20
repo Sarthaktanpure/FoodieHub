@@ -15,7 +15,7 @@ const User = require('./models/user.js');
 const userRouter = require('./routes/user.js');
 const restaurantRouter  = require("./routes/Restaurant.js");
 const reviewRouter = require("./routes/review.js");
-const aiRouter = require("./routes/ai.js");
+
 
 
 main()
@@ -73,27 +73,6 @@ app.use((req,res,next)=>{
 });
 
 
-
-app.get("/", (req, res) => {
-  res.redirect("/restaurants");
-});
-
-app.get("/help", (req, res) => {
-  res.render("pages/help.ejs");
-});
-
-app.get("/contact", (req, res) => {
-  res.render("pages/contact.ejs");
-});
-
-app.get("/about", (req, res) => {
-  res.render("pages/about.ejs");
-});
-
-app.get("/offers", (req, res) => {
-  res.render("pages/offers.ejs");
-});
-
 // Routes
 // Restaurant route
 app.use("/restaurants",restaurantRouter);
@@ -101,10 +80,6 @@ app.use("/restaurants",restaurantRouter);
 app.use("/restaurants/:id/reviews",reviewRouter);
 // User route
 app.use("/user",userRouter);
-// AI discover route
-app.use("/", aiRouter);
-
-app.use("/restaurants/discover", require("./routes/ai"));
 
 
 // for the invalid route

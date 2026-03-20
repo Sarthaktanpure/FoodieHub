@@ -1,9 +1,8 @@
-const express = require("express");
-const router = express.Router();
-const aiController = require("../controller/aiController");
+// routes/ai.js
+const OpenAI = require("openai");
 
-router.get("/restaurants/discover/ai", aiController.getDiscover);
+const openai = new OpenAI({
+  apiKey: process.env.OPEN_AI_KEY,
+});
 
-router.post("/restaurants/discover/ai", aiController.postDiscover);
-
-module.exports = router;
+module.exports = openai;

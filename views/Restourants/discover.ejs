@@ -1,0 +1,52 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<section class="form-section">
+  <div class="form-container">
+    <h2>Discover Restaurants</h2>
+    <p class="form-subtitle">
+      Search by cuisine, city, or vibe and explore places people love.
+    </p>
+
+    <form action="/restaurants/discover" method="POST" class="needs-validation">
+      <div class="form-group">
+        <label>Search</label>
+        <input
+          type="text"
+          class="form-control"
+          name="interest"
+          placeholder="e.g. sushi in Mumbai, rooftop dinner, street food"
+          value="<%= query || "" %>"
+          required
+        />
+      </div>
+      <button class="form-btn" type="submit">Search</button>
+    </form>
+
+    <% if (query && results && results.length === 0) { %>
+      <p class="no-comments">
+        No matches for "<%= query %>". Try a different cuisine or location.
+      </p>
+    <% } %>
+  </div>
+</section>
+
+<section class="popular">
+  <h2><%= query ? `Results for "${query}"` : "Popular Picks" %></h2>
+
+  <div class="restaurant-grid">
+    <% results.forEach((r) => { %>
+      <a href="/restaurants/<%= r._id %>" class="index-anchor">
+        <div class="card">
+          <% if (r.image && r.image.url) { %>
+            <img src="<%= r.image.url %>" alt="<%= r.title %>" />
+          <% } %>
+
+          <div class="card-content">
+            <h3><%= r.title %></h3>
+            <p><%= r.location %></p>
+          </div>
+        </div>
+      </a>
+    <% }) %>
+  </div>
+</section>

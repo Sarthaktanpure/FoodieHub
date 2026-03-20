@@ -1,4 +1,6 @@
+const mongoose = require("mongoose");
 const Restaurant = require("../models/restaurant.js");
+const Contact = require("../models/contact.js");
 
 module.exports.index = async (req, res) => {
   const allData = await Restaurant.find();
@@ -30,6 +32,25 @@ module.exports.search = async (req, res) => {
 module.exports.getCreate = (req, res) => {
   res.render("Restourants/new.ejs");
 };
+
+module.exports.contact = (req,res)=>{
+  res.render("Restourants/contact.ejs");
+}
+
+module.exports.contactPost = async(req,res,next)=>{
+   const userRequest = req.body.contact;
+   const newContact = new Contact({
+    name : userRequest.name,
+    email : userRequest.email,
+    subject : userRequest.subject,
+    message : userRequest.message,
+   });
+
+   const newRequest = await newContact.save();
+   console.log(newRequest);
+   req.flash("success","Your Request/Contact Details Saved....");
+   return res.redirect("/restaurants");
+}
 
 module.exports.postCreate = async (req, res) => {
   let restaurant = req.body.restaurant;
@@ -76,6 +97,13 @@ module.exports.postCreate = async (req, res) => {
 
 module.exports.getShow = async (req, res) => {
   let { id } = req.params;
+  if (id === "discover") {
+    return res.redirect("/restaurants/discover");
+  }
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    req.flash("error", "Restaurant not found.");
+    return res.redirect("/restaurants");
+  }
   let restaurant = await Restaurant.findById(id).populate({
     path: "reviews",
     populate: { path: "author" },
@@ -89,12 +117,25 @@ module.exports.getShow = async (req, res) => {
 };
 
 module.exports.putEdit = async (req, res) => {
-  let { id } = req.params;
-  let result = await Restaurant.findByIdAndUpdate(id, {
-    ...req.body.restaurant,
-  }); // ...req.body.restaurant will create the copy of of restaurant means they are pointing to different memory location.
+  const { id } = req.params;
+
+  // Create image object
+  const image = req.file
+    ? { filename: req.file.filename, url: req.file.path }
+    : undefined; // if no new image, keep existing
+
+  // Build update object
+  const updateData = { ...req.body.restaurant };
+  if (image) {
+    updateData.image = image; // include image only if a new file is uploaded
+  }
+
+  // Update document
+  let result = await Restaurant.findByIdAndUpdate(id, updateData, { new: true }); 
+  // new: true returns the updated document
+
   console.log(result);
-  req.flash("success", "Restaurant information edited successfuly.");
+  req.flash("success", "Restaurant information edited successfully.");
   res.redirect(`/restaurants/${id}`);
 };
 

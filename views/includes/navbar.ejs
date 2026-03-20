@@ -18,18 +18,17 @@
       <ul class="nav-links">
         <li><a href="/restaurants">Home</a></li>
         <li><a href="/restaurants/new">Add New Restaurant</a></li>
-        <li><a href="/restaurants/discover/ai">Discover</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <li><a href="/restaurants/discover">Discover</a></li>
+        <li><a href="/restaurants/contact">Contact</a></li>
       </ul>
 
       <div class="nav-actions">
         <% if(!currUser) { %>
-          <a class="nav-link" href="/user/login">Log in</a>
+          <a class="nav-link" href="/user/login"><b>Log in</b></a>
         <a class="btn-primary" href="/user/signup">Sign up</a>
           <% } %>
           <% if(currUser) {%>
-        <a class="nav-link" href="/user/logout">Log out</a>
-
+        <a class="nav-link" href="/user/logout" style="color:#ff7a00;"><b>Log out</b></a>
             <% } %>
       </div>
     </div>

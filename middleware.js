@@ -1,4 +1,4 @@
-const {restaurantSchema, userSchema} = require("./schema.js");
+const {restaurantSchema, userSchema, contactSchema} = require("./schema.js");
 const ExpressError = require("./utils/ExpressError");
 const Restaurant = require('./models/restaurant.js');
 const Review = require("./models/review.js");
@@ -42,11 +42,13 @@ module.exports.saveRedirectUrl = (req,res,next)=>{
 
 // Validate Restaurants.
 module.exports.validateRestaurant = (req, res, next) => {
-  let { error } = restaurantSchema.validate(req.body);
+  const payload = req.body.restaurant ? req.body : { restaurant: req.body };
+  let { error } = restaurantSchema.validate(payload);
   if (error) {
     const msg = error.details.map((el) => el.message).join(",");
     throw new ExpressError(400,msg);
   }else{
+    req.body = payload;
     next();
   };
 };
@@ -62,3 +64,15 @@ module.exports.validateUser =(req,res,next)=>{
     next();
   }
 }
+
+module.exports.validateContact = (req, res, next) => {
+  const payload = req.body.contact ? req.body : { contact: req.body };
+  let { error } = contactSchema.validate(payload);
+  if (error) {
+    const msg = error.details.map((el) => el.message).join(",");
+    throw new ExpressError(400, msg);
+  } else {
+    req.body = payload;
+    next();
+  }
+};

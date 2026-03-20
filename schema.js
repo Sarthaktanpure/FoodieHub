@@ -43,3 +43,32 @@ module.exports.userSchema = Joi.object({
     }),
   }).required(),
 });
+
+module.exports.contactSchema = Joi.object({
+  contact: Joi.object({
+
+    name: Joi.string()
+      .trim()
+      .min(3)
+      .max(50)
+      .required(),
+
+    email: Joi.string()
+      .trim()
+      .email()
+      .required(),
+
+    subject: Joi.string()
+      .trim()
+      .min(3)
+      .max(100)
+      .required(),
+
+    message: Joi.string()
+      .trim()
+      .min(10)
+      .max(500)
+      .required(),
+
+  }).required()
+});
