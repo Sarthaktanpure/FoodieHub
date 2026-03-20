@@ -81,6 +81,10 @@ app.use("/restaurants/:id/reviews",reviewRouter);
 // User route
 app.use("/user",userRouter);
 
+// Add this above your 404 middleware
+app.get("/", (req, res) => {
+  res.redirect("/restaurants");
+});
 
 // for the invalid route
 app.use((req, res, next) => {
