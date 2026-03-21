@@ -1,8 +1,3 @@
-Perfect — here’s your **final README.md in one clean file** (no extra formatting, just copy-paste directly into GitHub) 👇
-
-````markdown
-# 🍽️ FoodieHub
-
 🚀 **Live Demo:** https://foodiehub-z1hk.onrender.com  
 
 FoodieHub is a full-stack restaurant discovery platform built with modern web technologies. It enables users to explore restaurants, read and write reviews, and discover new places using an AI-powered recommendation system.
@@ -140,22 +135,3 @@ This project was built after completing the *Wanderlust* project, which helped s
 **Sarthak Tanpure**
 GitHub: [https://github.com/Sarthaktanpure](https://github.com/Sarthaktanpure)
 
----
-
-## ⭐ Support
-
-If you like this project, give it a ⭐ on GitHub!
-
-```
-
----
-
-Just:
-1. Open your `README.md`
-2. Paste this
-3. Commit & push  
-
-Done 🚀  
-
-If you want, I can next help you make it look **top 1% GitHub project (with badges + screenshots + UI preview)** 😏
-```
